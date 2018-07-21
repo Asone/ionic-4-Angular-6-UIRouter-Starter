@@ -1,0 +1,16 @@
+version: '2.1'
+services:
+  front:
+    tty: true
+    stdin_open: true
+    image: beevelop/ionic
+    command: "npx cap serve"
+    ports:
+      - 8100:8100
+      - 35729:35729
+      - 53703:53703
+    volumes:
+      - .:/App:rw
+    privileged: true
+    working_dir: /App
+    user: root

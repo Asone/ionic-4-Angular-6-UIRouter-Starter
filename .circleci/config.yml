@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:8.11.3-jessie-browsers
+    environment:
+      - NODE_ENV: "circleci"
+    steps:
+      - checkout
+      - run: 
+          name: Cleaning npm cache
+          command: npm cache clean --force
+      - run: 
+          name : Install cordova
+          command : sudo npm i -g cordova
+      - run: 
+          name: Rebuild node-sass to avoid install problems
+          command: npm rebuild node-sass --force  
+      - run:
+          name : Install ionic
+          command : sudo npm i -g ionic
+      - run:
+          name: Install node modules
+          command: npm install
+      - run:
+          name: Run unit tests
+          command: npx cap test
+      - run:
+          name: Building android
+          command: npx cap build android
+      - store_artifacts:
+          path: platforms/android/build/outputs/apk/android-debug.apk
