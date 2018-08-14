@@ -25,9 +25,9 @@ jobs:
           command: npm install
       - run:
           name: Run unit tests
-          command: npx cap test
+          command: npx @capacitor/cli test
       - run:
           name: Building android
-          command: npx cap build android
+          command: npx @capacitor/cli build android
       - store_artifacts:
           path: platforms/android/build/outputs/apk/android-debug.apk
