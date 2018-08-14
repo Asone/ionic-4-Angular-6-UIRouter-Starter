@@ -3,6 +3,8 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
+  mode: 'development',
+  RootUrl: 'http://api.noospheris.me:3000/api',
   production: false
 };
 
